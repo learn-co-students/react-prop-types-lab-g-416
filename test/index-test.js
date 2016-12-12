@@ -33,7 +33,9 @@ function isRequiredPropTypeError(spy, propName) {
     return false;
   }
 
-  return spy.lastCall.args.find(arg => arg.includes(`Required prop \`${propName}\``)) !== undefined;
+  console.log(propName);
+  console.log(spy.lastCall.args);
+  return spy.lastCall.args.find(arg => arg.includes(`The prop \`${propName}\` is marked as required`)) !== undefined;
 }
 
 describe('<Product />', () => {
