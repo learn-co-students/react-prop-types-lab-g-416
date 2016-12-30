@@ -1,3 +1,5 @@
+const React = require('react');
+const ReactDom = require('react-dom');
 const Product = require('./components/Product');
 
 ReactDOM.render(
