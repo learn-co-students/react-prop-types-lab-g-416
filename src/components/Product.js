@@ -12,12 +12,10 @@ class Product extends React.Component {
 
 const colors = ["white", "eggshell-white", "salmon"]
 
-function weightValidation(props, propName, componentName) {
+const weightValidation = (props, propName) => {
 	const value = props[propName]
 	
-	if ((typeof value === "number") && (value >= 80) && (value <= 300)) {
-		return null
-	} else {
+	if (!((typeof(value) === "number") && (value >= 80) && (value <= 300))) {
 		return "error"
 	}
 }
