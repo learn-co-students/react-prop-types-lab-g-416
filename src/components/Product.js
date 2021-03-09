@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 
-let color=["white",'eggshell-white',"salmon"]
 
 class Product extends React.Component{
     render (){
@@ -11,7 +10,7 @@ class Product extends React.Component{
         const {name, producer, hasWatermark, color, weight}=this.props;
         return (
             <div>
-               <h1></h1> 
+               <h1>Product</h1> 
             </div>
         )
     }
@@ -19,15 +18,32 @@ class Product extends React.Component{
 
 Product.defaultProps={
 hasWatermark: false,
-color: color
+
 };
+
 
 Product.propTypes={
 name: PropTypes.string.isRequired,
 producer: PropTypes.string,
-hasWatermark: PropTypes.boolean,
-color: PropTypes.string.isRequired,
-weight: PropTypes.number.isRequired
+hasWatermark: PropTypes.bool,
+color: PropTypes.oneOf(["white",'eggshell-white',"salmon"]).isRequired,
+weight: (props, propName) => {
+    const weight = props[propName];
+
+    if (weight === undefined) {
+      return new Error('The `weight` prop is required.');
+    }
+
+    if (isNaN(weight)) {
+      return new Error('The `weight` prop is not a number.');
+    }
+
+    const isValidWeight = weight > 80 && weight < 300;
+
+    if (!isValidWeight) {
+      return new Error('The `weight` prop should range between 80 and 300.');
+    }
+  },
 };
 
 
